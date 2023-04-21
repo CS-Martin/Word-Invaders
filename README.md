@@ -47,11 +47,14 @@
         - Action:
             | Option | Information |
             | :---: | :--- |
-            | `Info`| Include in the `[description]` what was the `commit` about. |
-            | `Add` | Include in the `[description]` when adding or creating a `directory/`, `file/`, or a `feature`. |
-            | `Update` | Include in the `[description]` when updating or modifying a `directory/`, `file/`, or a `feature`. |
-            | `Delete` | Include in the `[description]` when deleting a `directory/`, `file/`, or a `feature`. |
-            | `Bugfix` | Include in the `[description]` what was the bug's description in a `file/` or `feature`. |
+            | `feat`        | New feature for the user, not a new feature for build script.         |
+            | `fix`         | Bug fix for the user, not a fix to a build script.                    |
+            | `docs`        | Changes to the documentation.                                         |
+            | `style`       | Formatting, missing semi colons, etc; no production code change       |
+            | `refactor`    | Refactoring production code, eg. renaming a variable                  |
+            | `test`        | Adding missing tests, refactoring tests; no production code change    |
+            | `chore`       | Updating grunt tasks etc; no production code change.                  |
+            
     - Branching:
         ``` shell
             git branch '[layer]/[description]' '[commit-hash]'
