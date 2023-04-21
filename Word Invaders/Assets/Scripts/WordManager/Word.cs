@@ -7,14 +7,13 @@ public class Word {
     
     public string word;
     private int typeIndex;
-
-    public WordDisplay display;
+    public CursedWord cursedWord;
     
-    public Word(string word, WordDisplay display) {
+    public Word(string word, CursedWord cursedWord) {
         this.word = word;
         this.typeIndex = 0;
-        this.display = display;
-        this.display.SetWord(this.word);
+        this.cursedWord = cursedWord;
+        this.cursedWord.SetWord(this.word);
     }
 
     public char GetNextLetter() {
@@ -23,15 +22,19 @@ public class Word {
 
     public void TypeLetter() {
         typeIndex++;
-        display.RemoveLetter();
+        cursedWord.RemoveLetter();
     }
 
     public bool WordTyped() {
         bool isWordTyped = (typeIndex >= word.Length);
         if (isWordTyped) {
-            display.RemoveWord();
+            // cursedObject.RemoveWord();
         }
         return isWordTyped;
+    }
+
+    public void SetWordToActive() {
+        cursedWord.DeactivateIsTrigger();
     }
 
 }

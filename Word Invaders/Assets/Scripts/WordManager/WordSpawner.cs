@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class WordSpawner : MonoBehaviour {
     
-    public GameObject wordPrefab;
+    public GameObject cursedWordPrefab;
     public Transform wordCanvas;
 
-    public WordDisplay SpawnWord() {
+    public CursedWord SpawnWord() {
 
         Vector3 randomPosition = new Vector3 (Random.Range(-2.5f, 2.5f), 7f);
 
         //Quaternion.identity means to set no rotation
-        GameObject wordObject = Instantiate(wordPrefab, randomPosition, Quaternion.identity, wordCanvas);
-        WordDisplay wordDisplay = wordObject.GetComponent<WordDisplay>();
-        return wordDisplay;
+        GameObject cursedWordObject = Instantiate(cursedWordPrefab, randomPosition, Quaternion.identity, wordCanvas);
+        CursedWord cursedWord = cursedWordObject.GetComponent<CursedWord>();
+        return cursedWord;
     }
 
 }
