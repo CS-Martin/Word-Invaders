@@ -81,9 +81,14 @@
 ## **Dependencies**
 1. **WordInvaders**
     - Project Dependencies
+        - All of these can be automatically installed upon opening the unity project
         | Package | Command |
         | :---: | --- |
-        | *Install all dependencies*		        | `npm i`	            | 
+        | *Library		        |               | 
+        | *Logs                 |               |
+        | *Packages             |               |
+        | *ProjectSettings      |               |
+        
     
 ---
 
@@ -91,6 +96,7 @@
 1. **Install Git**
 2. **Install any IDE**
 3. **Install Unity Game Engine**
+4. **Install the prerequite version and packages to run the project**
 
 ---
 
