@@ -10,6 +10,7 @@ public class CursedWord : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject playerObject;
     public Collider2D collider;
+    public Player healthBar;
     private int cursedWordLife;
 
     private void Start() {
@@ -35,11 +36,12 @@ public class CursedWord : MonoBehaviour
     }
 
     public void RemoveWord() {
+        // Destroy the game object when it becomes invisible
+        healthBar.checker(true);
         Destroy(gameObject);
     }
 
     private void OnBecameInvisible() {
-        // Destroy the game object when it becomes invisible
         Destroy(gameObject);
     }
 

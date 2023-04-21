@@ -12,12 +12,41 @@ public class Player : MonoBehaviour
     private GameObject cursedWordObject;
     private float angle = 90f;
 
+    /// <Note> Health bar methods
+    public HealthBar healthBar;
+
+    public int maxHealth = 100;
+    public int currentHealth;
+
     void Start() {
+        /// <Note> Set current health to maxHealth
+        currentHealth = maxHealth;
+
         transform.rotation = Quaternion.AngleAxis(500f, Vector3.forward);
     }
 
     void Update() {
+        bool check = false;
+
+        /// <Note> If checker if true, then it means player failed to shoot cursedwords
+        /// <Note> Then we call checker
+        checker(check);
+
         UpdatePlayerRotation();
+    }
+
+    public void checker(bool check) {
+        if (check = true) {
+            TakenDamage(20);
+        }
+    }
+
+    /// <Brief> Deduct player's life points
+    /// <Param> Damage to the player
+    void TakenDamage(int damage) {
+        currentHealth -= damage;
+
+        healthBar.SetHealth(currentHealth);
     }
 
     void UpdatePlayerRotation() {
@@ -37,5 +66,6 @@ public class Player : MonoBehaviour
     public void Shoot() {
         GameObject bullet = Instantiate(bulletPrefab, bulletPoint.position, bulletPoint.rotation);
     }
+
 
 }
