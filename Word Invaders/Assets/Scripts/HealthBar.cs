@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarScript : MonoBehaviour
+public class HealthBar : MonoBehaviour
 {
      /// <Note> Will be used for HealthBar calculation
     public Slider slider;
