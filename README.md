@@ -81,13 +81,14 @@
 ## **Dependencies**
 1. **WordInvaders**
     - Project Dependencies
-        - All of these can be automatically installed upon opening the unity project
         | Package | Command |
         | :---: | --- |
         | *Library		        |               | 
         | *Logs                 |               |
         | *Packages             |               |
         | *ProjectSettings      |               |
+        
+        - All of these can be automatically installed upon opening the unity project
         
     
 ---
