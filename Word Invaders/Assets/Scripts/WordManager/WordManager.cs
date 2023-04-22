@@ -13,13 +13,11 @@ public class WordManager : MonoBehaviour {
 
     public void AddWord() {
         Word word = new Word(WordGenerator.GetRandomWord(), wordSpawner.SpawnWord());
-        // Debug.Log(word.word);
         words.Add(word);
     }
 
     public void TypeLetter(char letter) {
         if (hasActiveWord) {
-            // playerController.WordTyped(activeWord);
             if (activeWord.GetNextLetter() == letter) {
                 activeWord.TypeLetter();
                 player.Shoot();
@@ -39,10 +37,14 @@ public class WordManager : MonoBehaviour {
         }
 
         if (hasActiveWord && activeWord.WordTyped()) {
-            hasActiveWord = false;
-            words.Remove(activeWord);
+            DestroyActiveWord();
             scoreDisplay.UpdateScore();
         } 
+    }
+
+    public void DestroyActiveWord() {
+        hasActiveWord = false;
+        words.Remove(activeWord);
     }
 
 }

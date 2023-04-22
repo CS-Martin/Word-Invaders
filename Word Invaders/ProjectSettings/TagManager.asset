@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - CursedWordTarget
+  - Bullet
+  - CursedWord
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - 
@@ -41,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2306717791
     locked: 0

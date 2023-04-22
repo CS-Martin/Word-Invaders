@@ -6,8 +6,8 @@ using UnityEngine;
 public class Word {
     
     public string word;
-    private int typeIndex;
     public CursedWord cursedWord;
+    private int typeIndex;
     
     public Word(string word, CursedWord cursedWord) {
         this.word = word;
@@ -27,9 +27,6 @@ public class Word {
 
     public bool WordTyped() {
         bool isWordTyped = (typeIndex >= word.Length);
-        if (isWordTyped) {
-            // cursedObject.RemoveWord();
-        }
         return isWordTyped;
     }
 

@@ -10,10 +10,14 @@ public class CursedWord : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject playerObject;
     public Collider2D collider;
-    public Player healthBar;
+    public WordManager wordManager;
+    public bool isActiveWord;
     private int cursedWordLife;
 
     private void Start() {
+        GameObject wordManagerObject = GameObject.Find("WordManager");
+        wordManager = wordManagerObject.GetComponent<WordManager>();
+        isActiveWord = false;
         playerObject = GameObject.Find("Juan");
         cursedWordLife = text.text.Length;
     }
@@ -24,6 +28,8 @@ public class CursedWord : MonoBehaviour
 
         //cursed words moves towards juan
         transform.position = Vector2.MoveTowards(transform.position, playerObject.transform.position, fallSpeed * Time.deltaTime);
+
+        if(cursedWordLife == 0) Destroy(gameObject);
     }
 
     public void SetWord(string word) {
@@ -35,23 +41,26 @@ public class CursedWord : MonoBehaviour
         text.color = Color.red;
     }
 
-    public void RemoveWord() {
-        // Destroy the game object when it becomes invisible
-        healthBar.checker(true);
-        Destroy(gameObject);
-    }
-
     private void OnBecameInvisible() {
         Destroy(gameObject);
     }
 
     public void DeactivateIsTrigger() {
-        collider.isTrigger = false;
+        isActiveWord = true;
+        if(collider != null) collider.isTrigger = false;
+    }
+
+    public int getCursedWordLife() {
+        return this.cursedWordLife;
+    }
+
+    public void setCursedWordLife(int cursedWordLife) {
+        this.cursedWordLife = cursedWordLife;
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
-        cursedWordLife--;
-        if(cursedWordLife == 0) {
+        if(collision.gameObject.CompareTag("Player")){
+            if(isActiveWord) wordManager.DestroyActiveWord();
             Destroy(gameObject);
         }
     }
