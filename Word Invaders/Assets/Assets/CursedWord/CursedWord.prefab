@@ -119,7 +119,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -151,6 +151,8 @@ MonoBehaviour:
   text: {fileID: 372181293904767937}
   playerObject: {fileID: 0}
   collider: {fileID: 372181293448054289}
+  wordManager: {fileID: 0}
+  isActiveWord: 0
 --- !u!1 &372181293904767939
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +166,7 @@ GameObject:
   - component: {fileID: 372181293904767937}
   m_Layer: 0
   m_Name: Word Text
-  m_TagString: Untagged
+  m_TagString: CursedWord
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
