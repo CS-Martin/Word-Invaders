@@ -6,10 +6,15 @@ public class WordManager : MonoBehaviour {
     
     public List<Word> words;
     public WordSpawner wordSpawner;
-    public bool hasActiveWord;
-    public Word activeWord;
     public ScoreDisplay scoreDisplay;
     public Player player;
+
+    private bool hasActiveWord = false;
+    private Word activeWord;
+
+    private void Update() {
+        if(hasActiveWord) Debug.Log(activeWord.GetWord());
+    }
 
     public void AddWord() {
         Word word = new Word(WordGenerator.GetRandomWord(), wordSpawner.SpawnWord());
@@ -17,34 +22,59 @@ public class WordManager : MonoBehaviour {
     }
 
     public void TypeLetter(char letter) {
-        if (hasActiveWord) {
-            if (activeWord.GetNextLetter() == letter) {
-                activeWord.TypeLetter();
-                player.Shoot();
+        if (TryTypeActiveWord(letter)) {
+            player.Shoot();
+            if (activeWord.WordTyped()) {
+                DestroyActiveWord();
+                scoreDisplay.UpdateScore();
             }
         }
         else {
-            foreach(Word word in words) {
-                if (word.GetNextLetter() == letter) {
-                    activeWord = word;
-                    activeWord.SetWordToActive();
-                    hasActiveWord = true;
-                    word.TypeLetter();
-                    player.Shoot();
-                    break;
-                }
+            if(!hasActiveWord)
+                TryTypeNewWord(letter);
+        }
+    }
+
+    private bool TryTypeActiveWord(char letter) {
+        if (hasActiveWord && activeWord.GetNextLetter() == letter) {
+            activeWord.TypeLetter();
+            return true;
+        }
+        return false;
+    }
+
+    private void TryTypeNewWord(char letter) {
+        foreach (Word word in words) {
+            if (word.GetNextLetter() == letter) {
+                SetActiveWord(word);
+                activeWord.TypeLetter();
+                player.Shoot();
+                break;
             }
         }
-
-        if (hasActiveWord && activeWord.WordTyped()) {
-            DestroyActiveWord();
-            scoreDisplay.UpdateScore();
-        } 
     }
 
     public void DestroyActiveWord() {
-        hasActiveWord = false;
+        SetHasActiveWord(false);
         words.Remove(activeWord);
+    }
+
+    public void SetActiveWord(Word word) {
+        activeWord = word;
+        activeWord.SetWordToActive();
+        SetHasActiveWord(true);
+    }
+
+    public Word GetActiveWord() {
+        return activeWord;
+    }
+
+    public void SetHasActiveWord(bool hasActiveWord) {
+        this.hasActiveWord = hasActiveWord;
+    }
+
+    public bool GetHasActiveWord() {
+        return hasActiveWord;
     }
 
 }

@@ -6,17 +6,16 @@ using System;
 public class Player : MonoBehaviour
 {
 
+    private float angle = 90f;
+    private int currentHealth;
+
     public Transform bulletPoint;
     public WordManager wordManager;
     public GameObject bulletPrefab;
-    private float angle = 90f;
-
-    /// <Note> Health bar methods
     public HealthBar healthBar;
-    public int currentHealth;
 
     void Start() {
-        currentHealth = 100;
+        SetHealth(100);
         transform.rotation = Quaternion.AngleAxis(500f, Vector3.forward);
     }
 
@@ -25,19 +24,25 @@ public class Player : MonoBehaviour
     }
 
     void UpdatePlayerRotation() {
-        if(wordManager.hasActiveWord){
-            if(wordManager.activeWord.cursedWord != null){
-                GameObject targetObject = wordManager.activeWord.cursedWord.gameObject;
-                Vector3 direction = targetObject.transform.position - bulletPoint.transform.position;
-                angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            }
-        }
-        else{
-            if(angle < 90f) angle = (float)Math.Round((double)angle) + 1f;
-            else if(angle > 90f) angle = (float)Math.Round((double)angle) - 1f;
-        }
+        if (wordManager.GetHasActiveWord() && wordManager.GetActiveWord().GetCursedWord() != null)
+            RotateTowardsCursedWord();
+        else
+            ResetPlayerRotation();
 
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    private void RotateTowardsCursedWord() {
+        GameObject targetObject = wordManager.GetActiveWord().GetCursedWord().gameObject;
+        Vector3 direction = targetObject.transform.position - bulletPoint.transform.position;
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+    }
+
+    private void ResetPlayerRotation() {
+        if (angle < 90f)
+            angle = (float)Math.Round((double)angle) + 1f;
+        else if (angle > 90f)
+            angle = (float)Math.Round((double)angle) - 1f;
     }
 
     public void Shoot() {
@@ -49,11 +54,17 @@ public class Player : MonoBehaviour
             TakenDamage(20);
     }
 
-    /// <Brief> Deduct player's life points
-    /// <Param> Damage to the player
     void TakenDamage(int damage) {
-        currentHealth -= damage;
+        SetHealth(currentHealth - damage);
         healthBar.SetHealth(currentHealth);
     }
+
+    public int GetHealth() {
+        return currentHealth;
+    }
+
+    public void SetHealth(int health) {
+        currentHealth = health;
+    } 
 
 }
