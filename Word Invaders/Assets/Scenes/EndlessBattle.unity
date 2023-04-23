@@ -4824,7 +4824,7 @@ RectTransform:
   - {fileID: 1894839441}
   - {fileID: 1329605395}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4980,16 +4980,16 @@ RectTransform:
   m_GameObject: {fileID: 445088162}
   m_LocalRotation: {x: -0, y: -0, z: 0.7072659, w: 0.7069476}
   m_LocalPosition: {x: 0, y: 0, z: 0.24643326}
-  m_LocalScale: {x: 0.7086, y: 0.70720005, z: 1}
+  m_LocalScale: {x: 0.7085999, y: 0.7072, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 751799550}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 1030570675}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90.026}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.17, y: -7.75}
+  m_AnchoredPosition: {x: -0.2232, y: -6.8657}
   m_SizeDelta: {x: 2.53, y: 2.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &445088173
@@ -5008,7 +5008,6 @@ MonoBehaviour:
   wordManager: {fileID: 605034454}
   bulletPrefab: {fileID: 5409363268707189946, guid: 078ae2bee64c42c468b2d31d83eb2e71, type: 3}
   healthBar: {fileID: 1146743032}
-  currentHealth: 100
 --- !u!1 &459106768
 GameObject:
   m_ObjectHideFlags: 0
@@ -7000,6 +6999,7 @@ GameObject:
   - component: {fileID: 605034453}
   - component: {fileID: 605034452}
   - component: {fileID: 605034451}
+  - component: {fileID: 605034455}
   m_Layer: 0
   m_Name: WordManager
   m_TagString: Untagged
@@ -7129,12 +7129,105 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   words: []
   wordSpawner: {fileID: 605034453}
-  hasActiveWord: 0
-  activeWord:
-    word: 
-    cursedWord: {fileID: 0}
   scoreDisplay: {fileID: 308204897}
   player: {fileID: 445088173}
+  shootingSound: {fileID: 605034455}
+--- !u!82 &605034455
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605034444}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e243eedc425318d40b39ea66f55bd86b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &608763464
 GameObject:
   m_ObjectHideFlags: 0
@@ -10428,6 +10521,7 @@ RectTransform:
   - {fileID: 308204896}
   - {fileID: 54096784}
   - {fileID: 1146743030}
+  - {fileID: 445088172}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

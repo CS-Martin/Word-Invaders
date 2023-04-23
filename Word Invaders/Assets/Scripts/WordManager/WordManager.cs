@@ -9,6 +9,8 @@ public class WordManager : MonoBehaviour {
     public ScoreDisplay scoreDisplay;
     public Player player;
 
+    public AudioSource shootingSound;
+
     private bool hasActiveWord = false;
     private Word activeWord;
 
@@ -21,9 +23,16 @@ public class WordManager : MonoBehaviour {
         words.Add(word);
     }
 
+    public void getShootingSound() {
+        shootingSound = GetComponent<AudioSource>();
+    }
+
     public void TypeLetter(char letter) {
         if (TryTypeActiveWord(letter)) {
+
             player.Shoot();
+            getShootingSound();
+            shootingSound.Play();
             if (activeWord.WordTyped()) {
                 DestroyActiveWord();
                 scoreDisplay.UpdateScore();
