@@ -23,15 +23,12 @@ public class WordManager : MonoBehaviour {
         words.Add(word);
     }
 
-    public void getShootingSound() {
-        shootingSound = GetComponent<AudioSource>();
-    }
-
     public void TypeLetter(char letter) {
         if (TryTypeActiveWord(letter)) {
-
+            // Player shoot
             player.Shoot();
-            getShootingSound();
+            
+            // Play gun sound when firing
             shootingSound.Play();
             if (activeWord.WordTyped()) {
                 DestroyActiveWord();
@@ -55,6 +52,7 @@ public class WordManager : MonoBehaviour {
     private void TryTypeNewWord(char letter) {
         foreach (Word word in words) {
             if (word.GetNextLetter() == letter) {
+                shootingSound.Play();
                 SetActiveWord(word);
                 activeWord.TypeLetter();
                 player.Shoot();
