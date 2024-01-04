@@ -21,9 +21,6 @@
 
 > Goal: To entertain, improve typing skills, and to raise awareness about social issues in the Philippines.
 
-### **Project Lead**:
-- Xenia Buenagua, Instructor
-
 ### **Core Members:**
 - Martin Edgar Atole
 - Ben Jenon Alpuerto
